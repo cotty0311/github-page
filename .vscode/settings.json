@@ -1,0 +1,12 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["**/history-*.json"], 
+      "url": "./data/schemas/array.schema.json"
+    },
+    {
+      // "fileMatch": ["**/item*.json"],
+      "url": "./data/schemas/item.schema.json"
+    }
+  ]
+}

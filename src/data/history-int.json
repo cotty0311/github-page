@@ -1,0 +1,40 @@
+[
+  {
+    "type": "internship",
+    "keyid": "int-hello",
+    "show": true,
+    "date": ["2023-11-27", "2024-03-08"],
+    "title": "哈囉單車：人工智能部－搜廣推算法\t算法實習生",
+    "institution": {
+      "name": "哈囉單車",
+      "name_short": "哈囉",
+      "url": "https://www.hello-inc.com",
+      "location": "Hangzhou, China",
+      "short_description":"中國最大的共享單車公司，提供智能共享出行解決方案。"
+    },
+    "description": "負責組內前沿探索的任務，調研學術與商業上的研究，結合到工程分析實踐。包含調研 POI 數據商業化方法，以及序列數據結合多目標預測。\n核心技術：多目標模型，CTR/CVR 預測，SparkSQL，人群定向，Python\n取得成果\nPOI 數據商業化：通過文獻調研與數據分析方法，挖掘哈囉 POI 數據價值，提出7種商業化可行方案。\nMMoE 結合 Sequence：根據哈囉廣告特性與文獻調研結果，將用戶與廣告的交互數據序列化，並改造原本的 MMoE 建模分析。",
+    "tags": ["data analysis", "multi-objective prediction", "machine learning", "big data processing"],
+    "images":{
+      "internship_certificate": "./images/int-hello.png"
+    }
+  },
+  {
+    "type": "internship",
+    "keyid": "int-delta",
+    "show": true,
+    "date": ["2024-03-18", "2024-08-19"],
+    "title": "台達電子 知識管理部-文字平台\t全端開發實習生",
+    "institution": {
+      "name": "台達電子工業股份有限公司",
+      "name_short": "台達",
+      "url": "https://www.deltaww.com/zh-TW/index",
+      "location": "Taipei, Taiwan",
+      "short_description":"全球領先的電源管理與散熱解決方案供應商。"
+    },
+    "description": "負責公司內部知識管理平台的前後端開發，目標是根據產品或其他部門的需求，優化平台界面與功能。\n核心技術：前端 React，後端 Java Spring Boot\n取得成果\n簡易 viewer：帶領另一位新人，為 IT 部門建立用於客戶端的文件系統 viewer。串接前後端代碼，改善現有的模式。成果提升一倍效率。\n智能機器人：跨部門溝通、串接 API，成功整合跨部門之間的不同的格式接口，建立一個可用的客服機器人界面。",
+    "tags": ["full-stack development", "React", "Java Spring Boot", "API integration"],
+    "images":{
+      "internship_certificate": "./images/int-delta.png"
+    }
+  }
+]

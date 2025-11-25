@@ -1,0 +1,71 @@
+[
+  {
+    "type": "education",
+    "keyid": "edu-hs",
+    "show": true,
+    "date": ["2015-09-01", "2018-06-30"],
+    "title": "師範大學附屬高級中學",
+    "institution": {
+      "name": "師範大學附屬高級中學",
+      "name_short": "師大附中",
+      "url": "https://www.hs.ntnu.edu.tw",
+      "location": "Taipei, Taiwan",
+      "short_description": "台灣頂尖高中之一，注重學術與全人發展。"
+    },
+    "description": "（1407）",
+    "tags": ["high school"]
+  },
+  {
+    "type": "education",
+    "keyid": "edu-B",
+    "show": true,
+    "date": ["2018-09-01", "2022-06-30"],
+    "title": "浙江大學計算科學與技術學院 計算機科學與技術 學士",
+    "institution": {
+      "name": "浙江大學",
+      "name_short": "浙大",
+      "url": "https://www.zju.edu.cn/",
+      "location": "Hangzhou, China",
+      "short_description": "中國頂尖大學之一，QS世界大學排名前50名。"
+    },
+    "description": "（資訊學院 資工）",
+    "tags": ["computer science", "machine learning", "algorithms", "software development"],
+    "images":{
+      "graduation_certificate": "./images/uni-grad.png",
+      "degree_certificate_zh": "./images/uni-degree-zh.png",
+      "degree_certificate_en": "./images/uni-degree-en.png"
+    }
+  },
+  {
+    "type": "education",
+    "keyid": "edu-M",
+    "show": true,
+    "date": ["2022-09-01", "2026-03-30"],
+    "title": "浙江大學計算科學與技術學院 現代工業設計研究所 設計學 碩士",
+    "institution": {
+      "name": "浙江大學",
+      "name_short": "浙大",
+      "url": "https://www.zju.edu.cn/",
+      "location": "Hangzhou, China",
+      "short_description": "中國頂尖大學之一，QS世界大學排名前50名。"
+    },
+    "description": "（資訊學院 設計）",
+    "tags": ["computer science", "algorithms", "design thinking", "user experience" ]
+  },
+  {
+    "type": "education",
+    "keyid": "edu-M",
+    "show": true,
+    "date": ["2025-09-01", "2026-04-30"],
+    "title": "MITx MicroMasters Program in Statistics and Data Science 微碩士",
+    "institution": {
+      "name": "MITx MicroMasters",
+      "name_short": "MITx MicroMasters",
+      "url": "https://idss.mit.edu/academics/micromasters-program-in-statistics-and-data-science-sds/",
+      "location": "Online",
+      "short_description": "MIT 提供的線上微碩士課程，專注於統計與數據科學領域。難度和扎實程度廣受世界認可，許多知名大學可用其抵學分，包含麻省理工、中國清華大學、西北大學。"
+    },
+    "description": "（edX）",
+    "tags": ["statistics", "data science", "machine learning", "probability"]
+  }
+]

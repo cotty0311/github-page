@@ -1,0 +1,26 @@
+[
+  {
+    "type": "project",
+    "keyid": "proj-edx-hide-answer",
+    "show": true,
+    "date": ["2025-11-07", "2025-11-24"],
+    "title": "edX Answer Hider 擴充元件",
+    "institution": {
+      "name": "chrome 線上應用程式商店",
+      "name_short": "Google 擴充元件",
+      "url": "https://chromewebstore.google.com",
+      "location": "Global",
+      "short_description": "提供各類 Chrome 瀏覽器擴充功能的官方平台。"
+    },
+    "description": "自動隱藏 edX course 頁面中已經作答的答案，方便複習。",
+    "tags": ["Chrome Extension", "JavaScript", "Productivity Tool"],
+    "images":{},
+    "urls": {
+      "product_website": "https://chromewebstore.google.com/detail/edx-answer-hider/ecebidonklgnojbhmgdmlebdniclhmbo?pli=1",
+      "medium_article_1": "https://medium.com/@cotty.0311/vibe-coding-心得-ai-討好導致的代碼問題-5682b9e6263d",
+      "medium_article_2": "https://medium.com/@cotty.0311/google-擴充元件-edx-答案隱藏器-專案回顧-1373a20ce029",
+      "youtube_video": "https://youtu.be/HHpT0jQGVj0?si=vR1FHdTIQ6YOnvgb",
+      "project_github": "https://github.com/cotty0311/tools-projects/tree/main/hide-div-extension_90min"
+    }
+  }
+]

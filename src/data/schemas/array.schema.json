@@ -1,0 +1,8 @@
+{
+  "$id": "https://example.com/array.schema.json",
+  "title": "ItemArray",
+  "type": "array",
+  "items": {
+    "$ref": "./item.schema.json"
+  }
+}
