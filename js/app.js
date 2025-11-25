@@ -22,9 +22,17 @@ function makeCard(item){
 
   const media = document.createElement('div');
   media.className = 'card-media';
-  // try to pick an image from item.images or urls
-  const img = (item.images && Object.values(item.images).find(Boolean)) || item.image || item.thumbnail || '';
+  // try to pick an image from item.images or urls; fallback to YouTube thumbnail if available
+  const youtubeUrl = item.urls?.youtube_video || item.youtube_video;
+  const ytId = youtubeUrl ? getYouTubeId(youtubeUrl) : null;
+  let img = (item.images && Object.values(item.images).find(Boolean)) || item.image || item.thumbnail || '';
+  if(!img && ytId){ img = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`; }
   if(img){ media.style.backgroundImage = `url(${img})`; }
+  // add play overlay if this item has a youtube video
+  if(ytId){
+    const overlay = document.createElement('div'); overlay.className = 'play-overlay'; overlay.innerHTML = '▸';
+    media.appendChild(overlay);
+  }
   el.appendChild(media);
 
   const body = document.createElement('div');
@@ -106,14 +114,78 @@ function makeRow(title, items){
   return row;
 }
 
+function openModal(item){
+  const modal = document.getElementById('modal');
+  const media = document.getElementById('modal-media');
+  const title = document.getElementById('modal-title');
+  const meta = document.getElementById('modal-meta');
+  const desc = document.getElementById('modal-desc');
+  const tags = document.getElementById('modal-tags');
+  const link = document.getElementById('modal-link');
+
+  const youtubeUrl = item.urls?.youtube_video || item.youtube_video;
+  const ytId = youtubeUrl ? getYouTubeId(youtubeUrl) : null;
+  const img = (item.images && Object.values(item.images).find(Boolean)) || item.image || '';
+  if(ytId){
+    // embed youtube preview (autoplay muted)
+    media.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+    media.style.backgroundImage = '';
+  } else {
+    media.innerHTML = '';
+    if(img){ media.style.backgroundImage = `url(${img})`; media.style.backgroundColor = '' } else { media.style.backgroundImage = ''; media.style.backgroundColor = '#111'; }
+  }
+  title.textContent = item.title || '';
+  const inst = item.institution || item.company || {};
+  meta.textContent = `${inst.name || ''}${inst.location ? ' · ' + inst.location : ''} ${item.date ? '· ' + (item.date[0] || '') : ''}`;
+  desc.textContent = item.description || '';
+  tags.innerHTML = '';
+  (item.tags || []).forEach(t=>{ const s = document.createElement('span'); s.className='tag'; s.textContent=t; tags.appendChild(s); });
+  link.href = item.urls?.product_website || item.institution?.url || item.company?.url || '#';
+
+  modal.setAttribute('aria-hidden','false');
+
+  // focus for accessibility
+  const closeBtn = modal.querySelector('[data-close]');
+  closeBtn?.focus();
+}
+
+function closeModal(){
+  const modal = document.getElementById('modal');
+  const media = document.getElementById('modal-media');
+  // remove iframe to stop playback
+  media.innerHTML = '';
+  media.style.backgroundImage = '';
+  modal.setAttribute('aria-hidden','true');
+}
+
 function makeCardWithLink(item){
   const card = makeCard(item);
-  // wrap clickable behavior
-  const wrapper = document.createElement('a');
-  wrapper.href = item.urls?.product_website || item.institution?.url || item.company?.url || '#';
-  wrapper.target = '_blank'; wrapper.rel='noopener';
+  const wrapper = document.createElement('div');
+  wrapper.style.cursor = 'pointer';
+  wrapper.setAttribute('role','button');
+  wrapper.setAttribute('tabindex','0');
   wrapper.appendChild(card);
+  wrapper.addEventListener('click', (e)=>{ e.preventDefault(); openModal(item); });
+  wrapper.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(item); } });
   return wrapper;
+}
+
+// helper: extract YouTube video id from various URL formats
+function getYouTubeId(url){
+  if(!url) return null;
+  try{
+    // common formats: youtu.be/ID, youtube.com/watch?v=ID, youtube.com/embed/ID
+    const u = new URL(url);
+    if(u.hostname.includes('youtu.be')) return u.pathname.slice(1);
+    if(u.pathname.startsWith('/embed/')) return u.pathname.split('/embed/')[1];
+    if(u.searchParams && u.searchParams.get('v')) return u.searchParams.get('v');
+    // fallback: last path segment
+    const parts = u.pathname.split('/'); return parts.pop() || null;
+  }catch(e){
+    // fallback regex
+    const m = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+    return m ? m[1] : null;
+  }
 }
 
 async function loadAll(){
@@ -158,4 +230,13 @@ filterEl?.addEventListener('input', ()=>{ filterAndRender(filterEl.value.trim())
 loadAll();
 
 // expose for debug
-window.__HISTORY_APP = { loadAll, ITEMS };
+window.__HISTORY_APP = { loadAll, ITEMS, openModal, closeModal };
+
+// modal close handlers
+document.addEventListener('click', (e)=>{
+  const target = e.target;
+  if(target && target.matches('[data-close]')) closeModal();
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeModal();
+});

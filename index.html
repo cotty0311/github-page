@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Personal — History</title>
+  <!-- Netflix-like font: use Montserrat as close substitute -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
@@ -25,6 +27,24 @@
   <footer class="site-footer">
     <small>靜態頁面 — 可部署到 GitHub Pages</small>
   </footer>
+
+  <!-- Modal: details preview -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="關閉" data-close>✕</button>
+      <div class="modal-media" id="modal-media"></div>
+      <div class="modal-body">
+        <h2 id="modal-title"></h2>
+        <div class="meta" id="modal-meta"></div>
+        <p id="modal-desc"></p>
+        <div id="modal-tags" class="tags"></div>
+        <div class="modal-actions">
+          <a id="modal-link" class="btn" target="_blank" rel="noopener">前往查看</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="./js/app.js"></script>
 </body>
